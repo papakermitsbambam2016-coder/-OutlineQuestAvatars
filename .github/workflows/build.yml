@@ -20,9 +20,35 @@ jobs:
         with:
           dotnet-version: "6.0.x"
 
+      - name: Download MelonLoader 0.6.5
+        shell: bash
+        run: |
+          mkdir -p /tmp/melonloader
+          release_json="$(curl -fsSL https://api.github.com/repos/LavaGang/MelonLoader/releases/tags/v0.6.5)"
+          asset_url="$(echo "$release_json" | jq -r '.assets[] | select(.name | test("x64.*zip"; "i")) | .browser_download_url' | head -n 1)"
+
+          if [ -z "$asset_url" ]; then
+            echo "Could not find the MelonLoader x64 ZIP."
+            exit 1
+          fi
+
+          curl -fsSL "$asset_url" -o /tmp/melonloader.zip
+          unzip -q /tmp/melonloader.zip -d /tmp/melonloader
+
+          melon_dll="$(find /tmp/melonloader -path "*/net6/MelonLoader.dll" | head -n 1)"
+
+          if [ -z "$melon_dll" ]; then
+            echo "Could not find net6/MelonLoader.dll."
+            find /tmp/melonloader -type f
+            exit 1
+          fi
+
+          cp "$melon_dll" FlightMod/References/MelonLoader.dll
+
       - name: Check required DLL files
         shell: bash
         run: |
+          test -f "FlightMod/References/MelonLoader.dll"
           test -f "FlightMod/References/UnityEngine.CoreModule.dll"
           test -f "FlightMod/References/UnityEngine.PhysicsModule.dll"
           test -f "FlightMod/References/UnityEngine.InputLegacyModule.dll"
@@ -30,9 +56,6 @@ jobs:
 
       - name: Build flight mod
         run: dotnet build FlightMod/OutlineQuestFlight.csproj --configuration Release
-
-      - name: Upload build files
-        run: find FlightMod/bin -type f
 
       - name: Upload finished DLL
         uses: actions/upload-artifact@v4
