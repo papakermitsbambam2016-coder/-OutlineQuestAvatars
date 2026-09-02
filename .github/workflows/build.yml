@@ -1,25 +1,23 @@
-name: Build Flight Mod
+name: Build Outline Quest Flight DLL
 
 on:
   workflow_dispatch:
   push:
+    paths:
+      - "FlightMod/**"
+      - ".github/workflows/build.yml"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Download repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-dotnet@v4
+      - name: Install .NET 6
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "6.0.x"
 
-      - name: Download MelonLoader
-        run: |
-          mkdir -p temp
-          wget -O temp/ml.zip https://github.com/LavaGang/MelonLoader/releases/download/v0.6.5/MelonLoader.x64.zip
-          unzip -q temp/ml.zip -d temp/ml
-          cp temp/ml/MelonLoader/net6/MelonLoader.dll FlightMod/References/MelonLoader.dll
-
-      - name: Verify filesilho
+      - name: Download MelonLoader 0.6.5iry
