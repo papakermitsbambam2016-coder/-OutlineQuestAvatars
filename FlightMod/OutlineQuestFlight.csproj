@@ -4,24 +4,16 @@
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
-
     <AssemblyName>OutlineQuestFlight</AssemblyName>
     <RootNamespace>OutlineQuestFlight</RootNamespace>
-
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="MelonLoader">
-      <HintPath>References/MelonLoader.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.5" />
+  </ItemGroup>
 
-    <Reference Include="Il2CppInterop.Runtime">
-      <HintPath>References/Il2CppInterop.Runtime.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-
+  <ItemGroup>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>References/UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
