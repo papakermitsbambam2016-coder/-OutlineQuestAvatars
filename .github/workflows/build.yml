@@ -1,0 +1,42 @@
+name: Build Outline Quest Flight DLL
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "FlightMod/**"
+      - ".github/workflows/build.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Install .NET 6
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Check required DLL files
+        shell: bash
+        run: |
+          test -f "FlightMod/References/UnityEngine.CoreModule.dll"
+          test -f "FlightMod/References/UnityEngine.PhysicsModule.dll"
+          test -f "FlightMod/References/UnityEngine.InputLegacyModule.dll"
+          test -f "FlightMod/References/UnityEngine.XRModule.dll"
+
+      - name: Build flight mod
+        run: dotnet build FlightMod/OutlineQuestFlight.csproj --configuration Release
+
+      - name: Upload build files
+        run: find FlightMod/bin -type f
+
+      - name: Upload finished DLL
+        uses: actions/upload-artifact@v4
+        with:
+          name: OutlineQuestFlight-DLL
+          path: FlightMod/bin/Release/OutlineQuestFlight.dll
+          if-no-files-found: error
