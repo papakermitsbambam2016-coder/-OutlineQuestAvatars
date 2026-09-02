@@ -14,10 +14,10 @@
       <Private>false</Private>
     </Reference>
 
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>References/UnityEngine.CoreModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+<Reference Include="MelonLoader">
+  <HintPath>$(MSBuildProjectDirectory)/References/MelonLoader.dll</HintPath>
+  <Private>false</Private>
+</Reference>
 
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>References/UnityEngine.PhysicsModule.dll</HintPath>
