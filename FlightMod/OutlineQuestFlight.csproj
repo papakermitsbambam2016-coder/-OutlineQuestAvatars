@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>latest</LangVersion>
@@ -25,4 +24,14 @@
       <Private>false</Private>
     </Reference>
 
-    < Einwohner Includeатар? 
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>References/UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>References/UnityEngine.XRModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
