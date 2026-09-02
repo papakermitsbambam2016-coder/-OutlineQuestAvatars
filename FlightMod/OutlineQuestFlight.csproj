@@ -10,10 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LavaGang.MelonLoader" Version="0.6.5" />
-  </ItemGroup>
+    <Reference Include="MelonLoader">
+      <HintPath>References/MelonLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
 
-  <ItemGroup>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>References/UnityEngine.CoreModule.dll</HintPath>
       <Private>false</Private>
@@ -24,15 +25,4 @@
       <Private>false</Private>
     </Reference>
 
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>References/UnityEngine.InputLegacyModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-
-    <Reference Include="UnityEngine.XRModule">
-      <HintPath>References/UnityEngine.XRModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
-
-</Project>
+    < Einwohner Includeатар? 
