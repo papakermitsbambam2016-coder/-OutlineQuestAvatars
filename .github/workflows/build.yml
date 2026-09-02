@@ -1,65 +1,25 @@
-name: Build Outline Quest Flight DLL
+name: Build Flight Mod
 
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "FlightMod/**"
-      - ".github/workflows/build.yml"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Install .NET 6
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "6.0.x"
 
-      - name: Download MelonLoader 0.6.5
-        shell: bash
+      - name: Download MelonLoader
         run: |
-          mkdir -p /tmp/melonloader
-          release_json="$(curl -fsSL https://api.github.com/repos/LavaGang/MelonLoader/releases/tags/v0.6.5)"
-          asset_url="$(echo "$release_json" | jq -r '.assets[] | select(.name | test("x64.*zip"; "i")) | .browser_download_url' | head -n 1)"
+          mkdir -p temp
+          wget -O temp/ml.zip https://github.com/LavaGang/MelonLoader/releases/download/v0.6.5/MelonLoader.x64.zip
+          unzip -q temp/ml.zip -d temp/ml
+          cp temp/ml/MelonLoader/net6/MelonLoader.dll FlightMod/References/MelonLoader.dll
 
-          if [ -z "$asset_url" ]; then
-            echo "Could not find the MelonLoader x64 ZIP."
-            exit 1
-          fi
-
-          curl -fsSL "$asset_url" -o /tmp/melonloader.zip
-          unzip -q /tmp/melonloader.zip -d /tmp/melonloader
-
-          melon_dll="$(find /tmp/melonloader -path "*/net6/MelonLoader.dll" | head -n 1)"
-
-          if [ -z "$melon_dll" ]; then
-            echo "Could not find net6/MelonLoader.dll."
-            find /tmp/melonloader -type f
-            exit 1
-          fi
-
-          cp "$melon_dll" FlightMod/References/MelonLoader.dll
-
-      - name: Check required DLL files
-        shell: bash
-        run: |
-          test -f "FlightMod/References/MelonLoader.dll"
-          test -f "FlightMod/References/UnityEngine.CoreModule.dll"
-          test -f "FlightMod/References/UnityEngine.PhysicsModule.dll"
-          test -f "FlightMod/References/UnityEngine.InputLegacyModule.dll"
-          test -f "FlightMod/References/UnityEngine.XRModule.dll"
-
-      - name: Build flight mod
-        run: dotnet build FlightMod/OutlineQuestFlight.csproj --configuration Release
-
-      - name: Upload finished DLL
-        uses: actions/upload-artifact@v4
-        with:
-          name: OutlineQuestFlight-DLL
-          path: FlightMod/bin/Release/OutlineQuestFlight.dll
-          if-no-files-found: error
+      - name: Verify filesilho
