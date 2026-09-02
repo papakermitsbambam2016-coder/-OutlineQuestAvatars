@@ -10,27 +10,31 @@
 
   <ItemGroup>
     <Reference Include="MelonLoader">
-      <HintPath>References/MelonLoader.dll</HintPath>
+      <HintPath>$(MSBuildProjectDirectory)/References/MelonLoader.dll</HintPath>
       <Private>false</Private>
     </Reference>
-
-<Reference Include="Il2CppInterop.Runtime">
-  <HintPath>References/Il2CppInterop.Runtime.dll</HintPath>
-  <Private>false</Private>
-</Reference>
-
-<Reference Include="Il2CppInterop.Common">
-  <HintPath>References/Il2CppInterop.Common.dll</HintPath>
-  <Private>false</Private>
-</Reference>
-
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(MSBuildProjectDirectory)/References/Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Il2CppInterop.Common">
+      <HintPath>$(MSBuildProjectDirectory)/References/Il2CppInterop.Common.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(MSBuildProjectDirectory)/References/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(MSBuildProjectDirectory)/References/UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>References/UnityEngine.InputLegacyModule.dll</HintPath>
+      <HintPath>$(MSBuildProjectDirectory)/References/UnityEngine.InputLegacyModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
-
     <Reference Include="UnityEngine.XRModule">
-      <HintPath>References/UnityEngine.XRModule.dll</HintPath>
+      <HintPath>$(MSBuildProjectDirectory)/References/UnityEngine.XRModule.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
