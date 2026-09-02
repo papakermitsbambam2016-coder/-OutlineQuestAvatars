@@ -14,15 +14,15 @@
       <Private>false</Private>
     </Reference>
 
-<Reference Include="MelonLoader">
-  <HintPath>$(MSBuildProjectDirectory)/References/MelonLoader.dll</HintPath>
+<Reference Include="Il2CppInterop.Runtime">
+  <HintPath>References/Il2CppInterop.Runtime.dll</HintPath>
   <Private>false</Private>
 </Reference>
 
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>References/UnityEngine.PhysicsModule.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
+<Reference Include="Il2CppInterop.Common">
+  <HintPath>References/Il2CppInterop.Common.dll</HintPath>
+  <Private>false</Private>
+</Reference>
 
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>References/UnityEngine.InputLegacyModule.dll</HintPath>
