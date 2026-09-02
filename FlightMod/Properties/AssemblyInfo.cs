@@ -1,13 +1,11 @@
-using OutlineQuestFlight;
-
-[assembly: MelonInfo(
-    typeof(Main),
+[assembly: MelonLoader.MelonInfoAttribute(
+    typeof(OutlineQuestFlight.Main),
     "Outline Quest Flight",
     "1.0.0",
     "ThatVRKidd"
 )]
 
-[assembly: MelonGame(
+[assembly: MelonLoader.MelonGameAttribute(
     "Stress Level Zero",
     "BONELAB"
 )]
